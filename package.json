@@ -1,14 +1,14 @@
 {
-  "name": "react-webpack-boilerplate",
+  "name": "react-boilertemplate-sm",
   "version": "1.0.0",
-  "description": "",
+  "description": "BoilerTemplate con Soporte de CSS/SCSS, Imaágenes, React Router, Autoprefixer y Axios",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d --open",
     "build": "webpack -p"
   },
   "keywords": [],
-  "author": "",
+  "author": "Stalin Maza",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -32,7 +32,9 @@
     "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.0"
   }
 }
