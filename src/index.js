@@ -10,6 +10,7 @@ console.log(title);
 render(
     <div>
         <h1>Hello React & Webpack</h1>
+        <img src={require('./static/img/girl.jpg')} alt="IMG LOADING"/>
         <App />
     </div>,
     document.getElementById('app')

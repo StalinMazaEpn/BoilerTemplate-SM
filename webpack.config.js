@@ -42,6 +42,17 @@ module.exports = {
                         }
                     }
                 ],
+            },
+            {
+                test: /\.(jpg|png|jpeg|gif)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'static/img/',
+                        useRelativePath: true
+                    }
+                }]
             }
         ]
     },
