@@ -1,12 +1,14 @@
 const path = require('path');
 //Modulo de HTML
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+//Modulo Minificar CSS, SCSS
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'js/main.js'
     },
     devServer: {
         port: 4000
@@ -20,6 +22,26 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
+            },
+            {
+                test: /\.(s*)css$/,
+                // use: ['css-loader','sass-loader'],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ],
             }
         ]
     },
@@ -27,5 +49,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
+         new MiniCssExtractPlugin({
+            filename: "css/style.css",
+            options: {
+                minimize: true
+            }
+        })
     ]
 };
