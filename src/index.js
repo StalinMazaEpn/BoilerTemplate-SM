@@ -11,6 +11,7 @@ render(
     <div>
         <h1>Hello React & Webpack</h1>
         <img src={require('./static/img/girl.jpg')} alt="IMG LOADING"/>
+        <span>Circle</span>
         <App />
     </div>,
     document.getElementById('app')

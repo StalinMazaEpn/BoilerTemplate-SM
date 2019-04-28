@@ -5,3 +5,13 @@ body{
 img{
 	width: 150px;
 }
+
+.rounded {
+	width:50px;
+	background: green;
+    border-radius: 3px;
+}
+
+::placeholder {
+  color: gray;
+}

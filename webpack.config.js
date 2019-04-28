@@ -3,11 +3,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //Modulo Minificar CSS, SCSS
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+//Modulo Autoprefixer
+const autoprefixer = require("autoprefixer");
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'public'),
         filename: 'js/main.js'
     },
     devServer: {
@@ -36,6 +38,18 @@ module.exports = {
                         }
                     },
                     {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            autoprefixer: {
+                                browser: ["last 2 versions"]
+                            },
+                            plugins: () => [
+                                autoprefixer()
+                            ]
+                        }
+                    },
+                    {
                         loader: 'sass-loader',
                         options: {
                             sourceMap: true
@@ -45,14 +59,40 @@ module.exports = {
             },
             {
                 test: /\.(jpg|png|jpeg|gif)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'static/img/',
-                        useRelativePath: true
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'static/img/',
+                            useRelativePath: true
+                            }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
+                        }
                     }
-                }]
+                ]
             }
         ]
     },
